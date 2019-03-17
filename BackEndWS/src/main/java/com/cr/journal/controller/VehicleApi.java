@@ -1,6 +1,7 @@
 package com.cr.journal.controller;
 
 import com.cr.journal.entity.VehicleForm;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/vehicles")
+@Api(value = "VehicleApi" , description = "Vehicles Controller API")
 public interface VehicleApi {
 
     @GetMapping(value = "", produces= {MediaType.APPLICATION_JSON_VALUE})

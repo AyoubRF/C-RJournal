@@ -40,6 +40,7 @@ public class VehicleApiImpl implements VehicleApi {
                         .toUri())
                 .build();
     }
+
     @Override
     public ResponseEntity get(@PathVariable("id") Long id) {
         return ok(this.vehicles.findById(id).orElseThrow(() -> new VehicleNotFoundException()));
