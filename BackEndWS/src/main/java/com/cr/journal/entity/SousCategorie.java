@@ -19,6 +19,7 @@ public class SousCategorie {
     @Column(name = "ID_Sous_Categorie")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSousCategorie;
+
     @Column
     private String name;
     @ManyToOne

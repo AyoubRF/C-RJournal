@@ -22,8 +22,10 @@ public class Categorie {
     @Column(name = "ID_Categorie")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategorie;
+
     @Column
     private String name;
+
     @OneToMany(mappedBy = "categorie")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private  List<SousCategorie> sousCategorie;

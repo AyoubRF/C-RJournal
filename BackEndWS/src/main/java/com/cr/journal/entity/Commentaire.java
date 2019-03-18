@@ -20,15 +20,20 @@ public class Commentaire {
     @Column(name = "ID_COMMENTAIRE")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCommentaire;
+
     @Column(name="TITRE")
     private String titre;
+
     @Column(name="COMMENTAIRE")
     private String commentaire;
+
     @Column(name="NBR_SATISFACTION")
     private Integer nbrsatisfaction;
     //en attente , approuver
+
     @Column(name="STATUE")
     private String status;
+
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private User visiteur;
