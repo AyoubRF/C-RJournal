@@ -29,7 +29,7 @@ public class DataInitializer implements CommandLineRunner {
     VehicleRepository vehicles;
 
     @Autowired
-    JUserRepository users;
+    UserRepository users;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -50,14 +50,14 @@ public class DataInitializer implements CommandLineRunner {
         this.vehicles.findAll().forEach(v -> log.debug(" Vehicle :" + v.toString()));
 
 
-        this.users.save(JUser.builder()
+        this.users.save(User.builder()
                 .username("user")
                 .password(this.passwordEncoder.encode("password"))
                 .roles(Arrays.asList( "ROLE_USER"))
                 .build()
         );
 
-        this.users.save(JUser.builder()
+        this.users.save(User.builder()
                 .username("admin")
                 .password(this.passwordEncoder.encode("password"))
                 .roles(Arrays.asList("ROLE_USER", "ROLE_ADMIN"))
@@ -65,7 +65,7 @@ public class DataInitializer implements CommandLineRunner {
         );
 
         log.debug("printing all users...");
-        this.users.findAll().forEach(v -> log.debug(" User :" + v.toString()));
+        this.users.findAll().forEach(v -> log.debug(" User :" + v.getUsername().toString()+v.getPassword().toString()));
 
 
         this.userRepository.save(User.builder().username("FIRST USER").password("123456789").build());
