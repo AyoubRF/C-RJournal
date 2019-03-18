@@ -1,16 +1,24 @@
 package com.cr.journal.util;
 
+import com.cr.journal.dao.repository.UserRepository;
+import com.cr.journal.dto.UserRequest;
 import com.cr.journal.entity.JUser;
+import com.cr.journal.entity.User;
 import com.cr.journal.entity.Vehicle;
-import com.cr.journal.repository.JUserRepository;
-import com.cr.journal.repository.VehicleRepository;
+import com.cr.journal.dao.repository.JUserRepository;
+import com.cr.journal.dao.repository.VehicleRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Optional;
 
 
 @Component
@@ -25,6 +33,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
@@ -55,7 +66,45 @@ public class DataInitializer implements CommandLineRunner {
 
         log.debug("printing all users...");
         this.users.findAll().forEach(v -> log.debug(" User :" + v.toString()));
-    }
+
+
+        this.userRepository.save(User.builder().username("FIRST USER").password("123456789").build());
+        log.debug("FIIIRSTTT USEERR..");
+        this.userRepository.findAll().forEach(v -> log.debug(" FIRST USER :" + v.getUsername().toString()+v.getPassword().toString()));
+
+        //======= DTO =========//
+//        User user = new User();
+//        DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+//        user.setUsername("dto user");
+//        user.setPassword("123456987");
+//        user.setFirstname("dvdv");
+//        user.setLastname("ddfdf");
+//
+//        userRepository.save(user);
+//
+//        UserRequest ur = new UserRequest();
+//
+//        UserRequest userRequest = dozerBeanMapper.map(user,UserRequest.class);
+//
+//        System.out.println(userRequest.getUsername()+"  UUU  "+userRequest.getPassword());
+
+        UserRequest userRequest = new UserRequest();
+        DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+        userRequest.setUsername("dto useeer");
+        userRequest.setPassword("123456987");
+        userRequest.setFirstname("dvdv");
+        userRequest.setLastname("ddfdf");
+
+        User user = dozerBeanMapper.map(userRequest,User.class);
+
+        userRepository.save(user);
+
+        System.out.println(userRequest.getUsername()+ "  UUU  " +userRequest.getPassword());
 
 
     }
+
+}
+
+
+

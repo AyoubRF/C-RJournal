@@ -1,10 +1,14 @@
 package com.cr.journal;
 
+import org.aspectj.lang.annotation.Before;
+import org.dozer.DozerBeanMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class JournalApplication {

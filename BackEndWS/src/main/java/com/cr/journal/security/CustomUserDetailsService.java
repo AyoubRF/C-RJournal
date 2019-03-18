@@ -1,6 +1,6 @@
 package com.cr.journal.security;
 
-import com.cr.journal.repository.JUserRepository;
+import com.cr.journal.dao.repository.JUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
