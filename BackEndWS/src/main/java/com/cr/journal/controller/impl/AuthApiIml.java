@@ -1,7 +1,6 @@
 package com.cr.journal.controller.impl;
 
 import com.cr.journal.controller.AuthApi;
-import com.cr.journal.dao.repository.JUserRepository;
 import com.cr.journal.dao.repository.UserRepository;
 import com.cr.journal.security.jwt.JwtTokenProvider;
 import com.cr.journal.util.AuthenticationRequest;

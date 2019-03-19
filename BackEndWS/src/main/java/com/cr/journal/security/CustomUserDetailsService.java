@@ -1,6 +1,5 @@
 package com.cr.journal.security;
 
-import com.cr.journal.dao.repository.JUserRepository;
 import com.cr.journal.dao.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

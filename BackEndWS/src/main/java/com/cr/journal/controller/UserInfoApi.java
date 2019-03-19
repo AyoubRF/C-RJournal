@@ -18,5 +18,5 @@ public interface UserInfoApi {
 
     @GetMapping("/me")
     @ApiOperation(value="get current user infos", notes="This is a private API", response= List.class)
-    public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails);
+    ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails);
 }

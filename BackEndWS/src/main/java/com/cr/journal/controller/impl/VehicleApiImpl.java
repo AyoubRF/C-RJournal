@@ -6,6 +6,7 @@ import com.cr.journal.entity.Vehicle;
 import com.cr.journal.entity.VehicleForm;
 import com.cr.journal.exceptions.VehicleNotFoundException;
 import com.cr.journal.dao.repository.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;

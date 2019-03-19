@@ -2,23 +2,17 @@ package com.cr.journal.util;
 
 import com.cr.journal.dao.repository.UserRepository;
 import com.cr.journal.dto.UserRequest;
-import com.cr.journal.entity.JUser;
 import com.cr.journal.entity.User;
 import com.cr.journal.entity.Vehicle;
-import com.cr.journal.dao.repository.JUserRepository;
 import com.cr.journal.dao.repository.VehicleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.Optional;
 
 
 @Component
@@ -53,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
         this.users.save(User.builder()
                 .username("user")
                 .password(this.passwordEncoder.encode("password"))
-                .roles(Arrays.asList( "ROLE_USER"))
+                .roles(Arrays.asList("ROLE_USER"))
                 .build()
         );
 
@@ -64,13 +58,13 @@ public class DataInitializer implements CommandLineRunner {
                 .build()
         );
 
-        log.debug("printing all users...");
-        this.users.findAll().forEach(v -> log.debug(" User :" + v.getUsername().toString()+v.getPassword().toString()));
+        log.info("printing all users...");
+        this.users.findAll().forEach(v -> log.info(" User :" + v.getUsername() + v.getPassword()));
+        System.out.println();
 
-
-        this.userRepository.save(User.builder().username("FIRST USER").password("123456789").build());
-        log.debug("FIIIRSTTT USEERR..");
-        this.userRepository.findAll().forEach(v -> log.debug(" FIRST USER :" + v.getUsername().toString()+v.getPassword().toString()));
+        this.userRepository.save(User.builder().username("FIRST USER").password(this.passwordEncoder.encode("123456987")).build());
+        log.info("FIIIRSTTT USEERR..");
+        this.userRepository.findAll().forEach(v -> log.info(" FIRST USER :" + v.getUsername() + v.getPassword()));
 
         //======= DTO =========//
 //        User user = new User();
@@ -91,17 +85,15 @@ public class DataInitializer implements CommandLineRunner {
         UserRequest userRequest = new UserRequest();
         DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
         userRequest.setUsername("dto useeer");
-        userRequest.setPassword("123456987");
-        userRequest.setFirstname("dvdv");
-        userRequest.setLastname("ddfdf");
+        userRequest.setPassword(this.passwordEncoder.encode("123456789"));
+        userRequest.setFirstname("dvvvdv");
+        userRequest.setLastname("ddfdddf");
 
-        User user = dozerBeanMapper.map(userRequest,User.class);
+        User user = dozerBeanMapper.map(userRequest, User.class);
 
         userRepository.save(user);
 
-        System.out.println(userRequest.getUsername()+ "  UUU  " +userRequest.getPassword());
-
-
+        log.info(userRequest.getUsername()+"  UUUUU  "+userRequest.getPassword());
     }
 
 }
