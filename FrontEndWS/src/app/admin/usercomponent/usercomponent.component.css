@@ -1,0 +1,14 @@
+:host >>> .ui-table-wrapper{
+  /*margin-top:180px;*/
+}
+.total{
+  margin-top:180px;
+}
+:host >>>.ui-table .ui-table-thead th{
+  background-color: #036D8E;
+  color:#FFFFFF;
+}
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
