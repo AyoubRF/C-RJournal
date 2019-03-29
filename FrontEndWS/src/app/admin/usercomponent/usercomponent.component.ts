@@ -16,4 +16,7 @@ export class UsercomponentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick() {
+    console.log('MSG', 'rah drna chi 7aja');
+  }
 }

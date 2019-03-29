@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { RightMenuComponent } from './admin/right-menu/right-menu.component';
 
 
 registerLocaleData(en);
@@ -27,7 +28,8 @@ registerLocaleData(en);
     AppComponent,
     HeaderComponent,
     AdminComponent,
-    UsercomponentComponent
+    UsercomponentComponent,
+    RightMenuComponent
   ],
   imports: [
     BrowserModule,
