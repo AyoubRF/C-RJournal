@@ -1,15 +1,15 @@
-<ul style="height: 100%" nz-menu [nzMode]="'inline'"  [nzInlineCollapsed]="isCollapsed" >
+<ul style="height: 100%" nz-menu [nzMode]="'inline'"  [nzInlineCollapsed]="!isCollapsed" >
   <li (click)="collapse($event)" style="text-align: center"  nz-menu-item nz-tooltip nzPlacement="right">
           <span  title>
             <i nz-icon>
-              <i *ngIf="!isCollapsed" (click)="collapse($event)" class="icon-chevron_left_24px"></i>
-              <i *ngIf="isCollapsed" (click)="collapse($event)" class="icon-chevron_right_24px"></i>
+              <i *ngIf="isCollapsed" (click)="collapse($event)" class="icon-chevron_left_24px">Hide Menus</i>
+              <i *ngIf="!isCollapsed" (click)="collapse($event)" class="icon-chevron_right_24px">Show</i>
             </i>
           </span>
   </li>
   <li nz-submenu="" nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Workspace' : ''">
           <span title>
-            <i nz-icon><i class="icon-window-section"></i></i>
+            <i nz-icon><i class="icon-window-section"></i>UM</i>
             <span>UserManager</span>
           </span>
     <ul>
@@ -22,7 +22,7 @@
   </li>
   <li class="pr-1" nz-submenu nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Data sources Import' : ''">
           <span title>
-            <i nz-icon><i class="icon-call_merge_24px"></i></i>
+            <i nz-icon><i class="icon-call_merge_24px"></i>AM</i>
             <span>ArticleManagert</span>
           </span>
     <ul>
@@ -31,8 +31,4 @@
       <li nz-menu-item>ConfirmArticle</li>
     </ul>
   </li>
-
-
-
-
 </ul>
