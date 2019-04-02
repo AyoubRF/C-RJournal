@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -23,6 +23,9 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { DataService } from "./admin/articlecomponent/data.service";
 import { ArticleListComponent } from './admin/articlecomponent/article-list/article-list.component';
 import { ArticleDetailComponent } from './admin/articlecomponent/article-detail/article-detail.component';
+import {DialogModule} from 'primeng/dialog';
+
+
 
 
 registerLocaleData(en);
@@ -50,8 +53,10 @@ registerLocaleData(en);
     TableModule,
     NgZorroAntdModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(DataService),
+    DialogModule
 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
