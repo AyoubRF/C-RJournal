@@ -9,6 +9,7 @@ import { Article } from "../article";
 })
 export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
+  display: boolean = false;
 
   constructor(private articleService: ArticleService) { }
   ngOnInit() {
@@ -18,8 +19,15 @@ export class ArticleListComponent implements OnInit {
     })
   }
 
+  showDialog() {
+    this.display = true;
+  }
+  hideDialog() {
+    this.display = false;
+  }
+
   onClick() {
-    console.log('MSG', 'Articles Will be added ...');
+    console.log('MSG', 'User Will be added ...');
   }
 
 }
