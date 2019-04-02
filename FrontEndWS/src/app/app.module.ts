@@ -18,6 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { RightMenuComponent } from './admin/right-menu/right-menu.component';
+import { ArticlecomponentComponent } from './admin/articlecomponent/articlecomponent.component';
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { DataService } from "./admin/articlecomponent/data.service";
+import { ArticleListComponent } from './admin/articlecomponent/article-list/article-list.component';
+import { ArticleDetailComponent } from './admin/articlecomponent/article-detail/article-detail.component';
 
 
 registerLocaleData(en);
@@ -29,7 +34,10 @@ registerLocaleData(en);
     HeaderComponent,
     AdminComponent,
     UsercomponentComponent,
-    RightMenuComponent
+    RightMenuComponent,
+    ArticlecomponentComponent,
+    ArticleListComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,9 @@ registerLocaleData(en);
     TableModule,
     NgZorroAntdModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    InMemoryWebApiModule.forRoot(DataService),
+
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

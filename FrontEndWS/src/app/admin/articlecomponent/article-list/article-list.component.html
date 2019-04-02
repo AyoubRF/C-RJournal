@@ -1,0 +1,30 @@
+<h2 class = "h2" style="margin-top: 30px">Articles</h2>
+
+<div class="row">
+  <div class="col-11 text-right" style="margin-top: 30px" >
+    <button (click)="onClick()" class="btn btn-primary">Add Article</button>
+  </div>
+
+  <div class="col-11" style="margin-top: 10px">
+    <p-table [value]="articles">
+      <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Details</th>
+      </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-article>
+        <tr>
+         <td>{{ article.id }}</td>
+         <td>{{ article.name }}</td>
+          <td>
+            <a routerLink= "/article/{{article.id}}">{{ article.name }}</a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
