@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class UsercomponentComponent implements OnInit {
 
-  cars=[{ firstname : "mohammed", lastname:"rabii",username:"rabii20",phoneNumber:"0645787478",role:"admin", email: "xx@hotmail.com"},{ firstname : "mohammed", lastname:"rabii",username:"rabii20",phoneNumber:"0645787478",role:"admin", email: "xx@hotmail.com"}];
+  users=[{ firstname : "mohammed", lastname:"rabii",username:"rabii20",phoneNumber:"0645787478",role:"admin", email: "xx@hotmail.com"},
+    { firstname : "ayoub", lastname:"raffass",username:"ayoub96",phoneNumber:"0645787478",role:"admin", email: "yy@gmail.com"}];
 
   constructor() { }
 
@@ -17,6 +18,6 @@ export class UsercomponentComponent implements OnInit {
   }
 
   onClick() {
-    console.log('MSG', 'rah drna chi 7aja');
+    console.log('MSG', 'User Will be added ...');
   }
 }

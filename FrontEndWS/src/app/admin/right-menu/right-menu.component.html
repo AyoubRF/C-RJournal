@@ -1,34 +1,36 @@
 <ul style="height: 100%" nz-menu [nzMode]="'inline'"  [nzInlineCollapsed]="!isCollapsed" >
-  <li (click)="collapse($event)" style="text-align: center"  nz-menu-item nz-tooltip nzPlacement="right">
+  <li (click)="collapse($event)" style="text-align: center"  nz-menu-item nz-tooltip nzPlacement="left">
           <span  title>
-            <i nz-icon>
+            <i >
               <i *ngIf="isCollapsed" (click)="collapse($event)" class="icon-chevron_left_24px">Hide Menus</i>
-              <i *ngIf="!isCollapsed" (click)="collapse($event)" class="icon-chevron_right_24px">Show</i>
+              <i *ngIf="!isCollapsed" (click)="collapse($event)" class="icon-chevron_left_24px">Show</i>
             </i>
           </span>
   </li>
-  <li nz-submenu="" nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Workspace' : ''">
+  <li nz-submenu="" nz-tooltip nzPlacement="right"  [nzTitle]="isCollapsed ? 'Manage Users' : ''">
           <span title>
             <i nz-icon><i class="icon-window-section"></i>UM</i>
-            <span>UserManager</span>
+            <span>Users Manager</span>
           </span>
     <ul>
-      <li nz-menu-item>ListUsers</li>
+      <li nz-menu-item>
+        <a routerLink="users">Users List</a>
+      </li>
     </ul>
   </li>
 
   <li style="pointer-events: none" class="p-0" nz-menu-item>
     <hr class="col-xs-12">
   </li>
-  <li class="pr-1" nz-submenu nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Data sources Import' : ''">
+  <li class="pr-1" nz-submenu nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Manage Articles' : ''">
           <span title>
             <i nz-icon><i class="icon-call_merge_24px"></i>AM</i>
-            <span>ArticleManagert</span>
+            <span>Articles Manager</span>
           </span>
     <ul>
-      <li nz-menu-item>ListArticle</li>
-      <li nz-menu-item>addArticle</li>
-      <li nz-menu-item>ConfirmArticle</li>
+      <li nz-menu-item><a routerLink="articles">List Articles</a></li>
+      <li nz-menu-item>Add Article</li>
+      <li nz-menu-item>Approve Article</li>
     </ul>
   </li>
 </ul>

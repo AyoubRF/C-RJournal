@@ -1,30 +1,31 @@
 <!--<p-toast [style]="{marginTop: '80px'}"></p-toast>-->
+<h2 class = "h2" style="margin-top: 30px">Users</h2>
 
 <div class="row">
-  <div class="col-12 text-right" style="margin-top: 30px; margin-bottom: 10px">
-    <button (click)="onClick()" class="btn btn-primary">btn</button>
+  <div class="col-11 text-right" style="margin-top: 30px" >
+      <button (click)="onClick()" class="btn btn-primary">Add User</button>
   </div>
 
-  <div class="col-12">
-    <p-table [value]="cars">
+  <div class="col-11" style="margin-top: 10px">
+    <p-table [value]="users">
       <ng-template pTemplate="header">
         <tr>
-          <th>firstname</th>
-          <th>lastname</th>
-          <th>username</th>
-          <th>email</th>
-          <th>phoneNumber</th>
-          <th>role</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>PhoneNumber</th>
+          <th>Role</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-car>
+      <ng-template pTemplate="body" let-user>
         <tr>
-          <td>{{car.firstname}}</td>
-          <td>{{car.lastname}}</td>
-          <td>{{car.username}}</td>
-          <td>{{car.email}}</td>
-          <td>{{car.phoneNumber}}</td>
-          <td>{{car.role}}</td>
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.role}}</td>
         </tr>
       </ng-template>
     </p-table>
