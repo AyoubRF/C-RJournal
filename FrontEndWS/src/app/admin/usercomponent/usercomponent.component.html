@@ -2,9 +2,112 @@
 <h2 class = "h2" style="margin-top: 30px">Users</h2>
 
 <div class="row">
-  <div class="col-11 text-right" style="margin-top: 30px" >
-      <button (click)="onClick()" class="btn btn-primary">Add User</button>
-  </div>
+  <button nz-button nzType="primary" (click)="showModal()">
+    <span>Show Modal</span>
+  </button>
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    [nzTitle]="modalTitle"
+    [nzContent]="modalContent"
+    [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()"
+    [nzWidth]="1000"
+  >
+    <ng-template #modalTitle>
+      Custom Modal Title
+    </ng-template>
+
+    <ng-template #modalContent>
+
+      <form (ngSubmit)="onSubmit()" class="col-12" #f="ngForm">
+        <div class="row">
+          <div class="form-group col-6" >
+            <label for="Firstname">Firstname</label>
+            <input
+              type="text"
+              id="Firstname"
+              class="form-control"
+              ngModel
+              name="Firstname" required>
+          </div>
+        <div class="form-group col-6" >
+          <label for="Lastname">Lastname</label>
+          <input
+            type="text"
+            id="Lastname"
+            class="form-control"
+            ngModel
+            name="Lastname" required>
+        </div>
+        </div>
+        <div class="row">
+        <div class="form-group col-6">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            ngModel
+            name="username" required>
+        </div>
+          <div class="form-group col-6">
+            <label for="email">Mail</label>
+            <input type="email" id="email" class="form-control"
+                   ngModel
+                   name="email"
+                   required
+                   email
+                   #email="ngModel"
+            >
+            <div class="help-block" *ngIf="!email.valid && email.touched">Pleas enter a valid email</div>
+        </div>
+          </div >
+        <div class="row">
+        <div class="form-group col-6">
+          <label for="phone">Phonenumber</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control"
+            ngModel
+            name="phone" required>
+        </div>
+        <div class="form-group col-6">
+          <label for="role">Role</label>
+          <input
+            type="text"
+            id="role"
+            class="form-control"
+            ngModel
+            name="role" required>
+        </div>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!f.valid"
+        >Submit</button>
+      </form>
+
+      <hr>
+      <div class="row" *ngIf="submit">
+        <div class="col-xs-12">
+          <h3>Your Data</h3>
+          <p>Username :  {{user.username}}</p>
+          <p>Mail : {{user.email}}</p>
+          <p>Secret Question : {{user.secretQuestions}}</p>
+          <p>Answer: {{user.gender}}</p>
+          <p>Gender : {{user.answer }}</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <span>Modal Footer: </span>
+      <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
+      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+    </ng-template>
+  </nz-modal>
 
   <div class="col-11" style="margin-top: 10px">
     <p-table [value]="users">
