@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MenuModule} from 'primeng/menu';
@@ -28,6 +29,7 @@ import {DialogModule} from 'primeng/dialog';
 
 
 
+
 registerLocaleData(en);
 
 
@@ -40,7 +42,8 @@ registerLocaleData(en);
     RightMenuComponent,
     ArticlecomponentComponent,
     ArticleListComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+
   ],
   imports: [
     BrowserModule,
