@@ -1,5 +1,6 @@
 package com.cr.journal.controller;
 
+import com.cr.journal.dto.UserRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,4 +21,8 @@ public interface UserInfoApi {
     @GetMapping("/me")
     @ApiOperation(value="get current user infos", notes="This is a private API", response= List.class)
     ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails);
+
+
+
+
 }

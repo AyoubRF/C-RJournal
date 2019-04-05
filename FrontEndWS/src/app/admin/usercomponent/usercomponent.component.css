@@ -12,3 +12,25 @@
   margin-right: 8px;
   margin-bottom: 12px;
 }
+[nz-form] {
+  max-width: 600px;
+}
+.btn-wrap{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+input.ng-invalid.ng-touched {
+  border : 1px solid red;
+}
+.help-block{
+  color: red;
+}
+.etoile{
+  color: red;
+  float: right;
+}
+.label-form{
+  clear: both;
+  width: 101px;
+}

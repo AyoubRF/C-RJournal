@@ -29,7 +29,11 @@ public class UserRequest  {
     private String firstname;
     private String lastname;
     private String username;
-    private String password;
+    private String phoneNumber;
+    private String email;
+//    private String password;
+
+
 
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 //    private Date creationDate = new Date();
