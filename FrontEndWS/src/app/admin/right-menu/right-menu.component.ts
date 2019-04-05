@@ -10,7 +10,7 @@ export class RightMenuComponent implements OnInit {
   constructor() { }
   isCollapsed = false;
   collapse($event){
-    $event.stopPropagation()
+    $event.stopPropagation();
     $event.preventDefault();
     this.isCollapsed = !this.isCollapsed
   }

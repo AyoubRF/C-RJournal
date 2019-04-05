@@ -2,14 +2,16 @@
 <h2 class = "h2" style="margin-top: 30px">Users</h2>
 
 <div class="row">
+  <div class="col-3 offset-9">
   <button nz-button nzType="primary" (click)="showModal()">
-    <span>Show Modal</span>
+    <span>Add User</span>
   </button>
+  </div>
+</div>
   <nz-modal
     [(nzVisible)]="isVisible"
     [nzTitle]="modalTitle"
     [nzContent]="modalContent"
-    [nzFooter]="modalFooter"
     (nzOnCancel)="handleCancel()"
     [nzWidth]="1000"
   >
@@ -22,7 +24,7 @@
       <form (ngSubmit)="onSubmit()" class="col-12" #f="ngForm">
         <div class="row">
           <div class="form-group col-6" >
-            <label for="Firstname">Firstname</label>
+            <label class="label-form" for="Firstname">Firstname <span class="etoile">*</span></label>
             <input
               type="text"
               id="Firstname"
@@ -31,7 +33,7 @@
               name="Firstname" required>
           </div>
         <div class="form-group col-6" >
-          <label for="Lastname">Lastname</label>
+          <label for="Lastname">Lastname <span class="etoile">*</span></label>
           <input
             type="text"
             id="Lastname"
@@ -42,16 +44,23 @@
         </div>
         <div class="row">
         <div class="form-group col-6">
-          <label for="username">Username</label>
+          <label for="username">Username <span class="etoile">*</span></label>
           <input
             type="text"
             id="username"
             class="form-control"
             ngModel
-            name="username" required>
+            name="username" required
+            #username="ngModel"
+          >
+          <div class="help-block" *ngIf="!username.valid && username.touched">Pleas enter a valid username</div>
+          <!--<div class="ui-inputgroup">-->
+            <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
+            <!--<input type="text" pInputText id="username" placeholder="Username"  ngModel name="username" required>-->
+          <!--</div>-->
         </div>
           <div class="form-group col-6">
-            <label for="email">Mail</label>
+            <label for="email">Mail <span class="etoile">*</span></label>
             <input type="email" id="email" class="form-control"
                    ngModel
                    name="email"
@@ -64,16 +73,19 @@
           </div >
         <div class="row">
         <div class="form-group col-6">
-          <label for="phone">Phonenumber</label>
+          <label for="phone">Phonenumber <span class="etoile">*</span></label>
           <input
             type="text"
             id="phone"
             class="form-control"
             ngModel
-            name="phone" required>
+            name="phone" required
+            #phonenumber="ngModel"
+          >
+          <div class="help-block" *ngIf="!phonenumber.valid && phonenumber.touched">Pleas enter a valid phonenumber</div>
         </div>
         <div class="form-group col-6">
-          <label for="role">Role</label>
+          <label for="role">Role <span class="etoile">*</span></label>
           <input
             type="text"
             id="role"
@@ -82,35 +94,22 @@
             name="role" required>
         </div>
         </div>
+        <div class="btn-wrap">
         <button
           class="btn btn-primary"
           type="submit"
           [disabled]="!f.valid"
         >Submit</button>
+        </div>
       </form>
 
-      <hr>
-      <div class="row" *ngIf="submit">
-        <div class="col-xs-12">
-          <h3>Your Data</h3>
-          <p>Username :  {{user.username}}</p>
-          <p>Mail : {{user.email}}</p>
-          <p>Secret Question : {{user.secretQuestions}}</p>
-          <p>Answer: {{user.gender}}</p>
-          <p>Gender : {{user.answer }}</p>
-        </div>
-      </div>
     </ng-template>
 
-    <ng-template #modalFooter>
-      <span>Modal Footer: </span>
-      <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
-      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
-    </ng-template>
+
   </nz-modal>
-
+<div class="row">
   <div class="col-11" style="margin-top: 10px">
-    <p-table [value]="users">
+    <p-table [value]="users | async">
       <ng-template pTemplate="header">
         <tr>
           <th>Firstname</th>
