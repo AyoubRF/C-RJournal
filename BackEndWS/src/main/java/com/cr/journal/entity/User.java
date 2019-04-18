@@ -1,6 +1,7 @@
 package com.cr.journal.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails {
 
     @Id
@@ -41,29 +43,29 @@ public class User implements UserDetails {
     @Column(name = "LAST_NAME")
     private String lastname;
 
-    @NotNull
+//    @NotNull
     @Size(min = 4, max = 50)
     @Column(length = 50, unique = true, nullable = false, name = "USER_NAME")
     private String username;
 
     @Column(name = "PASSWORD")
     @NotEmpty
-    @NotNull
+//    @NotNull
     @Size(min = 6)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @Column(name = "CREATION_DATE")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date creationDate = new Date();
+//    @Column(name = "CREATION_DATE")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+//    private Date creationDate = new Date();
 
-    @ManyToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private User manager;
-
-    @OneToMany(mappedBy = "manager")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<User> managedUsers;
+//    @ManyToOne
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private User manager;
+//
+//    @OneToMany(mappedBy = "manager")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private List<User> managedUsers;
 
     @Email
     @Size(min = 5, max = 100)
@@ -73,17 +75,17 @@ public class User implements UserDetails {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "journaliste")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Article> articles;
+//    @OneToMany(mappedBy = "journaliste")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private List<Article> articles;
 
-    @OneToMany(mappedBy = "journaliste")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Article> visiteur;
+//    @OneToMany(mappedBy = "journaliste")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private List<Article> visiteur;
 
-    @OneToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Image image;
+//    @OneToOne
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private Image image;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default

@@ -25,22 +25,19 @@ import static java.util.stream.Collectors.toList;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserRequest  {
-
+    private Integer idUser;
     private String firstname;
     private String lastname;
     private String username;
     private String phoneNumber;
     private String email;
-//    private String password;
-
-
-
+    private String password;
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 //    private Date creationDate = new Date();
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @Builder.Default
-//    private List<String> roles = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {

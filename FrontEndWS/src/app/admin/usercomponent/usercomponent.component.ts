@@ -4,7 +4,7 @@ import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/
 import {ActionsSubject, select, Store} from "@ngrx/store";
 import {selectUserList} from "../store/selectors/user.selectors";
 import {Router} from "@angular/router";
-import {GetUsers} from "../store/action/admin.actions";
+import {AddUser, GetUsers} from "../store/action/admin.actions";
 import {UserService} from "../service/user.service";
 
 
@@ -29,11 +29,11 @@ export class UsercomponentComponent implements OnInit {
   phone='';
   role='';
    user={
+     idUser : null,
     firstname :'mohammed',
     lastname : 'rabii',
     username : 'rabii20',
-    phone : '0o6454545',
-    role : 'admin',
+     phoneNumber : '06454545',
     email : 'jj@jjj.com'
   }
   submit = false ;
@@ -46,10 +46,11 @@ export class UsercomponentComponent implements OnInit {
 
   constructor(private _userService: UserService,private fb: FormBuilder,private store: Store<any>, private _router: Router,private actionsSubject: ActionsSubject) {}
   ngOnInit() {
-     this.store.dispatch(new GetUsers());
+    this.store.dispatch(new GetUsers());
     this.store.pipe(select(selectUserList)).subscribe((res)=>{
       console.log(res);
     });
+
   }
 
 
@@ -110,8 +111,8 @@ export class UsercomponentComponent implements OnInit {
     this.user.lastname=this.signupForm.value.Lastname;
     this.user.username=this.signupForm.value.username;
     this.user.email=this.signupForm.value.email;
-    this.user.role=this.signupForm.value.role;
-    this.user.phone=this.signupForm.value.phone;
+    this.user.phoneNumber=this.signupForm.value.phone;
+    this.store.dispatch(new AddUser(this.user));
     console.log(this.user)
     // this.users.push(this.user);
   }

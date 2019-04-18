@@ -5,8 +5,8 @@ import { of } from 'rxjs';
 import {UserService} from "../../service/user.service";
 import {Store} from "@ngrx/store";
 import {IAppState} from "../state/app.state";
-import {switchMap} from "rxjs/operators";
-import {ActionAdminActionTypes, GetUsers,GetUsersSuccess} from "../action/admin.actions";
+import {map, switchMap} from "rxjs/operators";
+import {ActionAdminActionTypes, AddUser, AddUserSuccess, GetUsers, GetUsersSuccess} from "../action/admin.actions";
 
 
 
@@ -18,6 +18,14 @@ export class EffectAdminEffects {
     ofType<GetUsers>(ActionAdminActionTypes.GetUsers),
     switchMap(() => this._userService.getUsers()),
     switchMap((customerHttp: any) => of(new GetUsersSuccess(customerHttp)))
+  );
+
+  @Effect()
+  addUser$ = this._actions$.pipe(
+    ofType<AddUser>(ActionAdminActionTypes.AddUser),
+    map((action: AddUser) => action.payload),
+    switchMap((user)=>this._userService.createUser(user)),
+    switchMap((userHttp : any)=> of(new AddUserSuccess(userHttp)))
   );
 
   constructor(private _actions$: Actions
