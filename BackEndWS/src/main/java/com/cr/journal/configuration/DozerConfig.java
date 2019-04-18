@@ -27,7 +27,6 @@ public class DozerConfig {
                 mapping(ImageRequest.class,  Image.class, mapNull(false), mapEmptyString(false));
                 mapping(SousCategorieRequest.class, SousCategorie.class, mapNull(false), mapEmptyString(false));
                 mapping(UserRequest.class, User.class, mapNull(false), mapEmptyString(false));
-
             }
         };
     }

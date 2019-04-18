@@ -15,44 +15,57 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    @Autowired
-    DozerBeanMapper dozerBeanMapper;
+
+    DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+
     @Autowired
     UserRepository userRepository;
-//    @Autowired
-//    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @GetMapping("/")
-    public List<UserRequest> getusers(){
-        List<String>roles=new ArrayList<>();
-        roles.add("admin");
-        UserRequest user1=new UserRequest(1,"mohammed","rabii","rabii20","064545","dff@ff.com","122444",roles);
-        UserRequest user2=new UserRequest(null,"mohammed","rabii","rabii20","064545","dff@ff.com","1222222",roles);
-        UserRequest user3=new UserRequest(null,"mohammed","rabii","rabii20","064545","dff@ff.com","1111111",roles);
-        UserRequest user4=new UserRequest(null,"mohammed","rabii","rabii20","064545","dff@ff.com","111111111",roles);
-        List<UserRequest> users=new ArrayList<UserRequest>() ;
-        users.add(user1);
-        users.add(user1);
-        users.add(user1);
-        users.add(user1);
-        users.add(user1);
-        return users;
+    public List<UserRequest> getUsers(){
+
+        List<User> userList = userRepository.findAll();
+        List<UserRequest> userRequestList = new ArrayList<>();
+
+        userList.parallelStream().forEach( user ->
+                {
+                    UserRequest ur = dozerBeanMapper.map(user, UserRequest.class);
+                    userRequestList.add(ur);
+                });
+
+        return userRequestList;
 
     }
     @PostMapping("/")
-    public UserRequest adduser(@RequestBody UserRequest userRequest){
+    public UserRequest addUser(@RequestBody UserRequest userRequest){
 
-          User  user=dozerBeanMapper.map(userRequest, User.class);
-//        User user=new User();
-//        user.setUsername(userRequest.getUsername());
-//        user.setIdUser(1);
-//        user.setLastname(userRequest.getLastname());
-//        user.setFirstname(userRequest.getFirstname());
-//        user.setEmail(userRequest.getEmail());
-//        user.setPassword("1245678");
-       System.out.println(user.getFirstname());
-         userRepository.save(user);
-         return  userRequest;
+          User  user= dozerBeanMapper.map(userRequest, User.class);
+          user.setPassword("123456789");
+        //TODO : set password automatically
+
+        userRepository.save(user);
+        return  userRequest;
     }
 }
 
 
+
+
+/* ========  JUNKIES ======================================================================================
+-- For Static getUsers() :
+    UserRequest user1=new UserRequest(1,"mohammed","rabii","rabii20","064545","dff@ff.com","122444",roles);
+    List<UserRequest> users=new ArrayList<>() ;
+    users.add(user1);
+
+-- For addUser() :
+    User user=new User();
+    user.setUsername(userRequest.getUsername());
+    user.setIdUser(1);
+    user.setLastname(userRequest.getLastname());
+    user.setFirstname(userRequest.getFirstname());
+    user.setEmail(userRequest.getEmail());
+    user.setPassword("1245678");
+
+
+ =============================================================================================================
+ */

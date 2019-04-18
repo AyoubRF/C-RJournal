@@ -31,6 +31,7 @@ public class UserRequest  {
     private String username;
     private String phoneNumber;
     private String email;
+    private String role;
     private String password;
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 //    private Date creationDate = new Date();

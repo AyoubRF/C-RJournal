@@ -34,7 +34,8 @@ export class UsercomponentComponent implements OnInit {
     lastname : 'rabii',
     username : 'rabii20',
      phoneNumber : '06454545',
-    email : 'jj@jjj.com'
+    email : 'jj@jjj.com',
+     role : ''
   }
   submit = false ;
 
@@ -112,6 +113,7 @@ export class UsercomponentComponent implements OnInit {
     this.user.username=this.signupForm.value.username;
     this.user.email=this.signupForm.value.email;
     this.user.phoneNumber=this.signupForm.value.phone;
+    this.user.role=this.signupForm.value.role;
     this.store.dispatch(new AddUser(this.user));
     console.log(this.user)
     // this.users.push(this.user);
