@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,17 +54,18 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-//    @Column(name = "CREATION_DATE")
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-//    private Date creationDate = new Date();
+    private String role;
+    @Column(name = "CREATION_DATE")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private Date creationDate = new Date();
 
-//    @ManyToOne
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private User manager;
-//
-//    @OneToMany(mappedBy = "manager")
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private List<User> managedUsers;
+    @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private User manager;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<User> managedUsers;
 
     @Email
     @Size(min = 5, max = 100)
@@ -75,17 +75,17 @@ public class User implements UserDetails {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-//    @OneToMany(mappedBy = "journaliste")
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private List<Article> articles;
+    @OneToMany(mappedBy = "journaliste")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Article> articles;
 
-//    @OneToMany(mappedBy = "journaliste")
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private List<Article> visiteur;
+    @OneToMany(mappedBy = "journaliste")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Article> visiteur;
 
-//    @OneToOne
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private Image image;
+    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Image image;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default

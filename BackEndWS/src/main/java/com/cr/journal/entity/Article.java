@@ -46,8 +46,8 @@ public class Article {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Image> images;
 
-//    @ManyToOne
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//    private  User journaliste;
+    @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private  User journaliste;
 
 }

@@ -21,6 +21,7 @@ public class UserInfoApiImpl implements UserInfoApi {
 
     @Override
     public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails){
+
         Map<Object, Object> model = new HashMap<>();
         model.put("username", userDetails.getUsername());
         model.put("roles", userDetails.getAuthorities()
