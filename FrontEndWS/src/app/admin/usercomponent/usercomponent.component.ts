@@ -16,36 +16,31 @@ import {UserService} from "../service/user.service";
 })
 
 export class UsercomponentComponent implements OnInit {
+
   isVisible = false;
   isConfirmLoading = false;
-  @ViewChild('f') signupForm : NgForm ;
-  defaultQuestion = 'pet';
-
-  answer = '';
-  Firstname='';
-  Lastname='';
-  username='';
-  email='';
-  phone='';
-  role='';
-   user={
-     idUser : null,
-    firstname :'mohammed',
-    lastname : 'rabii',
-    username : 'rabii20',
-     phoneNumber : '06454545',
-    email : 'jj@jjj.com',
-     role : ''
-  }
   submit = false ;
 
+  user={
+    idUser : null,
+    firstname :'',
+    lastname : '',
+    username : '',
+    phoneNumber : '',
+    email : '',
+    role : ''
+  }
 
-   users=this.store.pipe(select(selectUserList));
-  // users=null
+  validateForm: FormGroup;
+  @ViewChild('f') signupForm : NgForm ;
 
+  users=this.store.pipe(select(selectUserList));
 
+  constructor(private _userService: UserService,
+              private fb: FormBuilder,private store: Store<any>, private _router: Router,
+              private actionsSubject: ActionsSubject
+              ) {}
 
-  constructor(private _userService: UserService,private fb: FormBuilder,private store: Store<any>, private _router: Router,private actionsSubject: ActionsSubject) {}
   ngOnInit() {
     this.store.dispatch(new GetUsers());
     this.store.pipe(select(selectUserList)).subscribe((res)=>{
@@ -58,26 +53,34 @@ export class UsercomponentComponent implements OnInit {
   showModal(): void {
     this.isVisible = true;
   }
+
   handleOk(): void {
     this.isConfirmLoading = true;
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
-    }, 3000);
+    }, 2000);
   }
+
   handleCancel(): void {
     this.isVisible = false;
   }
-  onClick() {
-    console.log('MSG', 'User Will be added ...');
+
+
+  onSubmit(){
+    this.submit=true;
+    this.user.firstname=this.signupForm.value.Firstname;
+    this.user.lastname=this.signupForm.value.Lastname;
+    this.user.username=this.signupForm.value.username;
+    this.user.email=this.signupForm.value.email;
+    this.user.phoneNumber=this.signupForm.value.phone;
+    this.user.role=this.signupForm.value.role;
+    this.store.dispatch(new AddUser(this.user));
+    console.log(this.user)
   }
 
-  //hadi lakan chi input 3amar katkhalih
-  //this.signupForm.form.patchValue({..});
-  //onSubmit(form :NgForm){
-  // console.log(form)
-  //}
-  validateForm: FormGroup;
+
+  /* =================== NON USED ======================*/
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -104,18 +107,6 @@ export class UsercomponentComponent implements OnInit {
     e.preventDefault();
   }
 
+  /* ======================================================= */
 
-
-  onSubmit(){
-    this.submit=true;
-    this.user.firstname=this.signupForm.value.Firstname;
-    this.user.lastname=this.signupForm.value.Lastname;
-    this.user.username=this.signupForm.value.username;
-    this.user.email=this.signupForm.value.email;
-    this.user.phoneNumber=this.signupForm.value.phone;
-    this.user.role=this.signupForm.value.role;
-    this.store.dispatch(new AddUser(this.user));
-    console.log(this.user)
-    // this.users.push(this.user);
-  }
 }

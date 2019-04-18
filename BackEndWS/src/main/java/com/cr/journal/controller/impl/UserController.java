@@ -3,9 +3,9 @@ package com.cr.journal.controller.impl;
 import com.cr.journal.dao.repository.UserRepository;
 import com.cr.journal.dto.UserRequest;
 import com.cr.journal.entity.User;
+import com.cr.journal.util.PasswordGenerator;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class UserController {
     public UserRequest addUser(@RequestBody UserRequest userRequest){
 
           User  user= dozerBeanMapper.map(userRequest, User.class);
-          user.setPassword("123456789");
+          user.setPassword(PasswordGenerator.generatePassword());
         //TODO : set password automatically
 
         userRepository.save(user);

@@ -1,135 +1,109 @@
-<!--<p-toast [style]="{marginTop: '80px'}"></p-toast>-->
 <h2 class = "h2" style="margin-top: 30px">Users</h2>
 
-<div class="row">
-  <div class="col-3 offset-9">
-  <button nz-button nzType="primary" (click)="showModal()">
-    <span>Add User</span>
-  </button>
+  <div class="row">
+    <div class="col-3 offset-9">
+    <button nz-button nzType="primary" (click)="showModal()">
+      <span>Add User</span>
+    </button>
+    </div>
   </div>
-</div>
+
+
+  <!----------  List Users Table   --------->
+
+  <div class="row">
+    <div class="col-11" style="margin-top: 10px">
+      <p-table [value]="users | async">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>PhoneNumber</th>
+            <th>Role</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.role}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <!----------  Add User POPUP   --------->
+
   <nz-modal
     [(nzVisible)]="isVisible"
     [nzTitle]="modalTitle"
     [nzContent]="modalContent"
     (nzOnCancel)="handleCancel()"
-    [nzWidth]="1000"
-  >
+    (nzOnOk)="handleOk()"
+    [nzWidth]="1000" >
+
     <ng-template #modalTitle>
-      Custom Modal Title
+      Add New User To CRJournal
     </ng-template>
 
     <ng-template #modalContent>
 
       <form (ngSubmit)="onSubmit()" class="col-12" #f="ngForm">
         <div class="row">
+
           <div class="form-group col-6" >
             <label class="label-form" for="Firstname">Firstname <span class="etoile">*</span></label>
-            <input
-              type="text"
-              id="Firstname"
-              class="form-control"
-              ngModel
-              name="Firstname" required>
+            <input type="text"  id="Firstname" class="form-control" ngModel name="Firstname" required>
           </div>
-        <div class="form-group col-6" >
-          <label for="Lastname">Lastname <span class="etoile">*</span></label>
-          <input
-            type="text"
-            id="Lastname"
-            class="form-control"
-            ngModel
-            name="Lastname" required>
+
+          <div class="form-group col-6" >
+            <label for="Lastname">Lastname <span class="etoile">*</span></label>
+            <input type="text"  id="Lastname"  class="form-control"  ngModel  name="Lastname" required>
+          </div>
+
         </div>
-        </div>
+
         <div class="row">
-        <div class="form-group col-6">
-          <label for="username">Username <span class="etoile">*</span></label>
-          <input
-            type="text"
-            id="username"
-            class="form-control"
-            ngModel
-            name="username" required
-            #username="ngModel"
-          >
-          <div class="help-block" *ngIf="!username.valid && username.touched">Pleas enter a valid username</div>
-          <!--<div class="ui-inputgroup">-->
-            <!--<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>-->
-            <!--<input type="text" pInputText id="username" placeholder="Username"  ngModel name="username" required>-->
-          <!--</div>-->
-        </div>
+
+          <div class="form-group col-6">
+            <label for="username">Username <span class="etoile">*</span></label>
+            <input type="text" name="username" id="username" class="form-control" #username="ngModel" ngModel required>
+            <div class="help-block" *ngIf="!username.valid && username.touched">Pleas enter a valid username</div>
+          </div>
+
           <div class="form-group col-6">
             <label for="email">Mail <span class="etoile">*</span></label>
-            <input type="email" id="email" class="form-control"
-                   ngModel
-                   name="email"
-                   required
-                   email
-                   #email="ngModel"
-            >
+            <input type="email" name="email" id="email" class="form-control"  email #email="ngModel" ngModel required>
             <div class="help-block" *ngIf="!email.valid && email.touched">Pleas enter a valid email</div>
-        </div>
-          </div >
+          </div>
+
+        </div >
+
         <div class="row">
-        <div class="form-group col-6">
-          <label for="phone">Phonenumber <span class="etoile">*</span></label>
-          <input
-            type="text"
-            id="phone"
-            class="form-control"
-            ngModel
-            name="phone" required
-            #phonenumber="ngModel"
-          >
-          <div class="help-block" *ngIf="!phonenumber.valid && phonenumber.touched">Pleas enter a valid phonenumber</div>
+          <div class="form-group col-6">
+            <label for="phone">Phonenumber <span class="etoile">*</span></label>
+            <input type="text" name="phone" id="phone" class="form-control" #phonenumber="ngModel" ngModel required>
+            <div class="help-block" *ngIf="!phonenumber.valid && phonenumber.touched">Pleas enter a valid phonenumber</div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="role">Role <span class="etoile">*</span></label>
+            <input type="text" name="role" id="role" class="form-control" ngModel required>
+          </div>
         </div>
-        <div class="form-group col-6">
-          <label for="role">Role <span class="etoile">*</span></label>
-          <input
-            type="text"
-            id="role"
-            class="form-control"
-            ngModel
-            name="role" required>
-        </div>
-        </div>
+
         <div class="btn-wrap">
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="!f.valid"
-        >Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
         </div>
       </form>
 
     </ng-template>
 
-
   </nz-modal>
-<div class="row">
-  <div class="col-11" style="margin-top: 10px">
-    <p-table [value]="users | async">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>PhoneNumber</th>
-          <th>Role</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-user>
-        <tr>
-          <td>{{user.firstname}}</td>
-          <td>{{user.lastname}}</td>
-          <td>{{user.username}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phoneNumber}}</td>
-          <td>{{user.role}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-</div>
+
