@@ -14,6 +14,7 @@ export function reducer(state = intialUserState, action: ActionAdminActions): IU
       return{
         ...state,
         selectedUser:action.payload,
+        users : [...state.users,action.payload]
       }
     }
     default:
