@@ -28,8 +28,8 @@ public class Image {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private  Article article;
 
-    @OneToOne(mappedBy = "image")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private  User user;
+//    @OneToOne(mappedBy = "image")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private  User user;
 
 }

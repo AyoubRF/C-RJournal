@@ -1,7 +1,5 @@
-import { Action } from '@ngrx/store';
-import { intialUserState,  IUserState } from '../state/user.state';
-import {  ActionAdminActions, ActionAdminActionTypes } from '../action/admin.actions'
-
+import {intialUserState, IUserState} from '../state/user.state';
+import {ActionAdminActions, ActionAdminActionTypes} from '../action/admin.actions'
 
 
 export function reducer(state = intialUserState, action: ActionAdminActions): IUserState {
@@ -11,6 +9,12 @@ export function reducer(state = intialUserState, action: ActionAdminActions): IU
         ...state,
         users: action.payload
       };
+    }
+    case ActionAdminActionTypes.AddUserSuccess:{
+      return{
+        ...state,
+        selectedUser:action.payload,
+      }
     }
     default:
       return state;
