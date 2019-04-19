@@ -4,11 +4,16 @@ import {AdminComponent} from "./admin/admin.component";
 import {ArticleListComponent} from './admin/admincomponent/articlecomponent/article-list/article-list.component';
 import {ArticleDetailComponent} from "./admin/admincomponent/articlecomponent/article-detail/article-detail.component";
 import {UsercomponentComponent} from "./admin/usercomponent/usercomponent.component";
+import {CategoryComponent} from "./admin/category/category.component";
 
 const routes: Routes = [
 
   {
     path: 'users', component: UsercomponentComponent
+  },
+
+  {
+    path: 'categories', component: CategoryComponent
   },
 
   {

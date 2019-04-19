@@ -99,7 +99,7 @@
         </div>
 
         <div class="btn-wrap">
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid || submitted">Submit</button>
         </div>
       </form>
 

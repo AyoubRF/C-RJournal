@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MenuModule} from 'primeng/menu';
@@ -25,22 +23,17 @@ import { appReducers } from './admin/store/reducer/app.reducer';
 import en from '@angular/common/locales/en';
 import { RightMenuComponent } from './admin/right-menu/right-menu.component';
 import { ArticlecomponentComponent } from './admin/admincomponent/articlecomponent/articlecomponent.component';
-// import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { DataService } from "./admin/admincomponent/articlecomponent/data.service";
 import { ArticleListComponent } from './admin/admincomponent/articlecomponent/article-list/article-list.component';
 import { ArticleDetailComponent } from './admin/admincomponent/articlecomponent/article-detail/article-detail.component';
 import {DialogModule} from 'primeng/dialog';
 import {environment} from "../environments/environment";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {UserService} from "./admin/service/user.service";
-
-
-
-
+import { CategoryComponent } from './admin/category/category.component';
+import {CategoryService} from "./admin/service/category.service";
 
 
 registerLocaleData(en);
-
 
 @NgModule({
   declarations: [
@@ -52,6 +45,7 @@ registerLocaleData(en);
     ArticlecomponentComponent,
     ArticleListComponent,
     ArticleDetailComponent,
+    CategoryComponent,
 
   ],
   imports: [
@@ -69,13 +63,13 @@ registerLocaleData(en);
     HttpClientModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([EffectAdminEffects]),
+
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    // InMemoryWebApiModule.forRoot(DataService),
     DialogModule
 
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US },UserService],
+  providers: [{ provide: NZ_I18N, useValue: en_US },UserService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

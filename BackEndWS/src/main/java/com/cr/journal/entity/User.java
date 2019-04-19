@@ -23,7 +23,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Entity
-@Table(name = "JOURNAL_USER")
+@Table(name = "JOURNAL_USERS")
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -42,14 +42,14 @@ public class User implements UserDetails {
     @Column(name = "LAST_NAME")
     private String lastname;
 
-//    @NotNull
+
     @Size(min = 4, max = 50)
     @Column(length = 50, unique = true, nullable = false, name = "USER_NAME")
     private String username;
 
     @Column(name = "PASSWORD")
     @NotEmpty
-//    @NotNull
+
     @Size(min = 6)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;

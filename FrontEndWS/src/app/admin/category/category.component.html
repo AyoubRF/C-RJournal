@@ -1,0 +1,77 @@
+<h2 class = "h2" style="margin-top: 30px">Categories Management</h2>
+
+<div class="row">
+  <div class="col-3 offset-9">
+    <button nz-button nzType="primary" routerLink="categories">
+      <span>Add Category</span>
+    </button>
+  </div>
+</div>
+
+<!----------  List Categories Table   --------->
+
+<div class="row">
+  <div class="col-11" style="margin-top: 10px">
+    <p-table [value]="categories | async">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Category Name</th>
+          <th>Description</th>
+          <th>Sub-Categories</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-category>
+        <tr>
+          <td>{{category.name}}</td>
+          <td>{{category.description}}</td>
+          <td>
+            <button nz-button nzType="primary" (click)="showModal()">
+              <span></span>
+            </button>
+          </td>
+
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!----------  Add User POPUP   --------->
+
+<!--<nz-modal-->
+<!--  [(nzVisible)]="isVisible"-->
+<!--  [nzTitle]="modalTitle"-->
+<!--  [nzContent]="modalContent"-->
+<!--  (nzOnCancel)="handleCancel()"-->
+<!--  (nzOnOk)="handleOk()"-->
+<!--  [nzWidth]="1000" >-->
+
+<!--  <ng-template #modalTitle>-->
+<!--    List of Sub-Categories-->
+<!--  </ng-template>-->
+
+<!--  <ng-template #modalContent>-->
+<!--    <div class="row">-->
+<!--      <div class="col-11" style="margin-top: 10px">-->
+<!--        <p-table [value]="categories">-->
+<!--          <ng-template pTemplate="header">-->
+<!--            <tr>-->
+<!--              <th>Category Name</th>-->
+<!--              <th>Description</th>-->
+<!--              <th>Sub-Categories</th>-->
+<!--            </tr>-->
+<!--          </ng-template>-->
+<!--          <ng-template pTemplate="body" let-Subcategory>-->
+<!--            <tr>-->
+<!--              <td>{{Subcategory.name}}</td>-->
+<!--              <td>{{Subcategory.description}}</td>-->
+<!--            </tr>-->
+<!--          </ng-template>-->
+<!--        </p-table>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </ng-template>-->
+
+<!--</nz-modal>-->
+

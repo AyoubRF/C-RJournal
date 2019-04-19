@@ -17,6 +17,7 @@ import {UserService} from "../service/user.service";
 
 export class UsercomponentComponent implements OnInit {
 
+  submitted = false;
   isVisible = false;
   isConfirmLoading = false;
   submit = false ;
@@ -59,11 +60,13 @@ export class UsercomponentComponent implements OnInit {
     setTimeout(() => {
       this.isVisible = false;
       this.isConfirmLoading = false;
+      this.submitted = false;
     }, 2000);
   }
 
   handleCancel(): void {
     this.isVisible = false;
+    this.submitted = false;
   }
 
 
@@ -76,6 +79,7 @@ export class UsercomponentComponent implements OnInit {
     this.user.phoneNumber=this.signupForm.value.phone;
     this.user.role=this.signupForm.value.role;
     this.store.dispatch(new AddUser(this.user));
+    this.submitted = true;
     console.log(this.user)
   }
 

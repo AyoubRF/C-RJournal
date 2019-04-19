@@ -26,6 +26,9 @@ public class Categorie {
     @Column
     private String name;
 
+    @Column
+    private String description;
+
     @OneToMany(mappedBy = "categorie")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private  List<SousCategorie> sousCategorie;

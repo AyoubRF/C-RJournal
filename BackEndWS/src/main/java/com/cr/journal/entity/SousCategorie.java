@@ -22,6 +22,10 @@ public class SousCategorie {
 
     @Column
     private String name;
+
+    @Column
+    private String description;
+
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Categorie categorie;
