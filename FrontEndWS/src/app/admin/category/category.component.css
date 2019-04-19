@@ -1,0 +1,36 @@
+:host >>> .ui-table-wrapper{
+  /*margin-top:180px;*/
+}
+.total{
+  margin-top:180px;
+}
+:host >>>.ui-table .ui-table-thead th{
+  background-color: #036D8E;
+  color:#FFFFFF;
+}
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+[nz-form] {
+  max-width: 600px;
+}
+.btn-wrap{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+input.ng-invalid.ng-touched {
+  border : 1px solid red;
+}
+.help-block{
+  color: red;
+}
+.etoile{
+  color: red;
+  float: right;
+}
+.label-form{
+  clear: both;
+  width: 101px;
+}
